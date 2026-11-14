@@ -466,7 +466,7 @@ function renderApp() {
             <div class="full file-row">
               <label>
                 Receipt photo
-                <input type="file" name="receipt" accept="image/*" capture="environment" required />
+                <input type="file" name="receipt" accept="image/*" required />
               </label>
               <img class="receipt-preview" id="receipt-preview" alt="Receipt preview" />
             </div>
