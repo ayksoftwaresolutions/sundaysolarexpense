@@ -133,7 +133,7 @@ Add `noindex` is already in `index.html`.
 ## How the app works
 
 1. **Unlock** — user enters passphrase; frontend calls `GET ?action=list&pass=…`. On success, a session flag + passphrase are stored in `sessionStorage` (client convenience only; Apps Script re-checks every request).
-2. **Add expense** — always visible on every view. Person (dropdown of four), amount, date, optional note, receipt photo. Image is compressed client-side (~1600px, JPEG ~0.8), then `POST` JSON with base64 receipt.
+2. **Add expense** — always visible on every view. Person (dropdown of four), amount, date, optional note, optional receipt photo. If provided, image is compressed client-side (~1600px, JPEG ~0.8), then `POST` JSON with base64 receipt.
 3. **Views (hash nav)** — tabs at the top:
    - **All expenses** (`#/all`) — full list, overall total, optional quick filter, per-person breakdown
    - **Yashwanth / Sandeep / Ashok / Ramesh** (`#/person/Name`) — that person’s expenses and their total only

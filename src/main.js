@@ -388,10 +388,6 @@ function wireExpenseForm() {
       showToast('Date is required.', 'error')
       return
     }
-    if (!compressedReceipt?.base64) {
-      showToast('Add a receipt photo.', 'error')
-      return
-    }
 
     btn.disabled = true
     try {
@@ -401,9 +397,9 @@ function wireExpenseForm() {
         amount,
         date,
         note,
-        receiptBase64: compressedReceipt.base64,
-        receiptMimeType: compressedReceipt.mimeType,
-        receiptFileName: compressedReceipt.fileName,
+        receiptBase64: compressedReceipt?.base64 || '',
+        receiptMimeType: compressedReceipt?.mimeType || '',
+        receiptFileName: compressedReceipt?.fileName || '',
       })
       form.reset()
       form.querySelector('input[name="date"]').value = todayISO()
@@ -432,7 +428,7 @@ function renderApp() {
             <span class="brand-name">Sunday Solar</span>
           </div>
           <h1>Company expenses</h1>
-          <p class="tagline">Add a receipt, then review All or each person’s page.</p>
+          <p class="tagline">Log expenses, then review All or each person’s page.</p>
         </div>
         <button type="button" class="btn-ghost" id="lock-btn">Lock</button>
       </header>
@@ -441,7 +437,7 @@ function renderApp() {
 
       <section class="panel" aria-labelledby="add-heading">
         <h2 id="add-heading">Add expense</h2>
-        <p class="hint">Available on every view. Receipt photo is required; images are compressed before upload.</p>
+        <p class="hint">Available on every view. Receipt photo is optional; images are compressed before upload.</p>
         <form id="expense-form">
           <div class="form-grid">
             <label>
@@ -465,8 +461,8 @@ function renderApp() {
             </label>
             <div class="full file-row">
               <label>
-                Receipt photo
-                <input type="file" name="receipt" accept="image/*" required />
+                Receipt photo <span style="font-weight:400;color:var(--ink-muted)">(optional)</span>
+                <input type="file" name="receipt" accept="image/*" />
               </label>
               <img class="receipt-preview" id="receipt-preview" alt="Receipt preview" />
             </div>

@@ -165,7 +165,6 @@ function doPost(e) {
     if (!person) throw new Error('person is required.')
     if (!(amount > 0)) throw new Error('amount must be > 0.')
     if (!date) throw new Error('date is required.')
-    if (!b64) throw new Error('receipt is required.')
 
     var sheet = getSheet_()
 
@@ -177,18 +176,22 @@ function doPost(e) {
       }
     }
 
-    var safePerson = person.replace(/[^\w\- ]+/g, '').replace(/\s+/g, '_')
-    var driveName = date + '_' + safePerson + '_' + id + '.jpg'
-    var blob = Utilities.newBlob(
-      Utilities.base64Decode(b64),
-      mime,
-      driveName || fileName,
-    )
-    var folder = DriveApp.getFolderById(getProp_('FOLDER_ID'))
-    var file = folder.createFile(blob)
-    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW)
-    var fileId = file.getId()
-    var receiptUrl = 'https://drive.google.com/file/d/' + fileId + '/view'
+    var fileId = ''
+    var receiptUrl = ''
+    if (b64) {
+      var safePerson = person.replace(/[^\w\- ]+/g, '').replace(/\s+/g, '_')
+      var driveName = date + '_' + safePerson + '_' + id + '.jpg'
+      var blob = Utilities.newBlob(
+        Utilities.base64Decode(b64),
+        mime,
+        driveName || fileName,
+      )
+      var folder = DriveApp.getFolderById(getProp_('FOLDER_ID'))
+      var file = folder.createFile(blob)
+      file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW)
+      fileId = file.getId()
+      receiptUrl = 'https://drive.google.com/file/d/' + fileId + '/view'
+    }
 
     var createdAt = new Date().toISOString()
     sheet.appendRow([
