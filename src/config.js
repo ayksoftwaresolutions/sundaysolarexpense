@@ -7,7 +7,7 @@
  */
 
 /** Paste the Apps Script web-app URL after deploy (ends with /exec). */
-export const APPS_SCRIPT_URL = 'PASTE_APPS_SCRIPT_WEB_APP_URL_HERE'
+export const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyssm-QNWxV_5T5SMP0XCr383mse4r_kpOBX0Siz-uks_m4k43C5wZVyud1acJ19weh/exec'
 
 /** Display currency label (amounts are plain numbers in the Sheet). */
 export const CURRENCY = 'ZAR'
