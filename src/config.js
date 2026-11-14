@@ -13,7 +13,7 @@ export const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyssm-QN
 export const CURRENCY = 'Rs'
 
 /** Person dropdown — exactly these four. Edit this array if membership changes. */
-export const TEAM_NAMES = ['Yashwanth', 'Sandeep', 'Ashok', 'Ramesh']
+export const TEAM_NAMES = ['Yashwanth', 'Sandeep', 'Ashok', 'Ramesh', 'Chenchi Reddy']
 
 /** sessionStorage key after successful unlock this tab session */
 export const SESSION_UNLOCK_KEY = 'ss_expense_unlocked'
